@@ -127,20 +127,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     }
                 });
 
-
-
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    MailService mailer = new MailService("404eureka@gmail.com","jyotisakhare13@gmail.com","Subject","TextBody", "<b>HtmlBody</b>");
-                    mailer.sendAuthenticated();
-                } catch (Exception e) {
-                    Log.e("TAG", "Failed sending email.", e);
+            findViewById(R.id.register).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LoginActivity.this, EmailSignUpActivity.class);
+                    startActivity(intent);
                 }
-                return null;
+            });
+        findViewById(R.id.touchID).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, TouchIDSignup.class);
+                startActivity(intent);
             }
-        }.execute();
+        });
+
+//        new AsyncTask<Void, Void, Void>() {
+//            @Override
+//            protected Void doInBackground(Void... voids) {
+//                try {
+//                    MailService mailer = new MailService("404eureka@gmail.com","jyotisakhare13@gmail.com","Subject","TextBody", "<b>HtmlBody</b>");
+//                    mailer.sendAuthenticated();
+//                } catch (Exception e) {
+//                    Log.e("TAG", "Failed sending email.", e);
+//                }
+//                return null;
+//            }
+//        }.execute();
     }
 
     private void populateAutoComplete() {
