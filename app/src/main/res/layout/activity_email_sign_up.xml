@@ -27,7 +27,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
-                android:background="@color/colorAccent" />
+                android:src="@drawable/loyal_citizen_logo" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="45dp">
+                android:minHeight="40dp">
 
                 <Spinner
                     android:id="@+id/spinnerCountry"
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Create New Account"
-                android:textStyle="bold" />
+                 />
 
             <Button
                 android:id="@+id/registerWithUID"
@@ -131,23 +131,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Register with UUID"
-                android:textStyle="bold" />
+                 />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorPrimaryDark" />
 
             <Button
                 android:id="@+id/signInButton"
                 style="@style/secondaryButton"
+                android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+
                 android:text="Already a member? Sign In"
-                android:textStyle="bold" />
+                 />
 
         </LinearLayout>
     </ScrollView>

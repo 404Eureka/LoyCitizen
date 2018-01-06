@@ -15,9 +15,9 @@
 
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@color/colorPrimaryDark"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_finger_print"
             android:id="@+id/imageView"
             android:layout_gravity="center|top"
             android:layout_centerHorizontal="true"

@@ -35,6 +35,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.OkHttpResponseListener;
 import com.example.loylogic.hackathon.Model.User;
 
 import org.json.JSONArray;
@@ -44,6 +45,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.realm.Realm;
+import okhttp3.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -83,6 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
+        getSupportActionBar().hide();
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -113,6 +116,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 .setTag("test")
                 .setPriority(Priority.LOW)
                 .build()
+//                .getAsOkHttpResponse(new OkHttpResponseListener() {
+//                    @Override
+//                    public void onResponse(Response response) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(ANError anError) {
+//
+//                    }
+//                })
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -130,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             findViewById(R.id.register).setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LoginActivity.this, EmailSignUpActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, UIDSignUpActivity.class);
                     startActivity(intent);
                 }
             });
@@ -139,6 +153,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, TouchIDSignup.class);
                 startActivity(intent);
+//                Intent intent = new Intent(LoginActivity.this, FeedbackActivity.class);
+//                startActivity(intent);
+
             }
         });
 

@@ -3,26 +3,29 @@ package com.example.loylogic.hackathon;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DashBoardFragment.OnFragmentInteractionListener, ShareFeedbackFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(0);
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        navigationView.getMenu().getItem(0).setChecked(true);
+
     }
 
     @Override
@@ -82,33 +89,59 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public void goTOMenu(int position){
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(0);
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        navigationView.getMenu().getItem(0).setChecked(true);
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-int position = 1;
+        int position = 1;
+        int image =0;
+        Fragment fragment = new PlanetFragment();
         if (id == R.id.nav_camera) {
             // Handle the camera action
             position = 1;
+            getSupportActionBar().setTitle("Loyal Citizen");
+            DashBoardFragment dashBoardFragment = new DashBoardFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, dashBoardFragment).commit();
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         } else if (id == R.id.nav_gallery) {
             position = 2;
         } else if (id == R.id.nav_slideshow) {
             position = 3;
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
+            getSupportActionBar().setTitle("Share Feedback");
+            ShareFeedbackFragment shareFeedbackFragment = new ShareFeedbackFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, shareFeedbackFragment).commit();
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }  else if (id == R.id.rewardPoints) {
+            getSupportActionBar().setTitle("Reward Points ");
 
         } else if (id == R.id.nav_send) {
-            Intent intent = new Intent( MainActivity.this, LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-            return true ;
+            return true;
+        } else if (id == R.id.nav_manage) {
+            getSupportActionBar().setTitle("Initiatives");
+            image =  R.drawable.initiative;
         }
 
-        Fragment fragment = new PlanetFragment();
+
         Bundle args = new Bundle();
         args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+        args.putInt("image", image);
         fragment.setArguments(args);
 
         FragmentManager fragmentManager = getFragmentManager();
@@ -119,6 +152,11 @@ int position = 1;
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
 
@@ -132,15 +170,26 @@ int position = 1;
             // Empty constructor required for fragment subclasses
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_planet, container, false);
+            rootView.setBackgroundDrawable(getResources().getDrawable(R.drawable.rewardpoint));
             int i = getArguments().getInt(ARG_PLANET_NUMBER);
+            int image = getArguments().getInt("image");
             String planet = getResources().getStringArray(R.array.planets_array)[i];
-
             int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
                     "drawable", getActivity().getPackageName());
+            if (image != 0){
+               imageId = image;
+
+            } else {
+                imageId = R.drawable.rewardpoint;
+
+            }
+            rootView.setBackgroundDrawable(getResources().getDrawable(imageId));
+
             ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
             getActivity().setTitle(planet);
             return rootView;

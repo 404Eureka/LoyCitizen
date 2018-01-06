@@ -26,6 +26,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,10 +34,10 @@
 
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:background="@color/colorAccent"
+                android:src="@drawable/loyal_citizen_logo"
                 android:layout_marginBottom="20dp"/>
 
             <android.support.design.widget.TextInputLayout
@@ -79,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                 />
 
             <Button
                 android:id="@+id/register"
@@ -88,24 +89,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="New User? Register"
-                android:textStyle="bold" />
+                 />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorPrimaryDark"
+                android:layout_height="2dp"
+                android:background="#333333"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 />
 
             <Button
                 android:id="@+id/touchID"
                 style="@style/secondaryButton"
+                android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="0dp"
                 android:text="Use your TouchID"
-                android:textStyle="bold" />
+                 />
 
         </LinearLayout>
     </ScrollView>

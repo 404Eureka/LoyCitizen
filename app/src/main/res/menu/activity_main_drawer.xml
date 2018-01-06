@@ -3,36 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        >
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Home" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Enable Touch ID" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Share Feedback" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="initiatives" />
+        <item
+            android:id="@+id/rewardPoints"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Reward points" />
+        <item
+            android:id="@+id/rewardPoints1"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Support a Cause" />
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Logout" />
-        </menu>
-    </item>
+        <item
+            android:id="@+id/rewardPoints2"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Quick links" />
+        <item
+            android:id="@+id/rewardPoints3"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Notification" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Logout" />
+    </group>
 
 </menu>
